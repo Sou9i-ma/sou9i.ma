@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOU9I.ma – Votre souk en ligne</title>
+<meta name="description" content="SOU9I.ma : achetez en ligne, livraison partout au Maroc, paiement à la livraison.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#" aria-label="SOU9I.ma">SOU<span>9</span>I<small>.ma</small></a>
+  <input id="search" type="search" placeholder="Rechercher un produit…" aria-label="Rechercher">
+  <button id="adminBtn" class="ghost" type="button">Gérer la boutique</button>
+  <button id="cartBtn" class="cart-btn" type="button" aria-label="Ouvrir le panier">
+    Panier <b id="cartCount">0</b>
+  </button>
+</header>
+
+<section class="hero">
+  <h1>Le souk, <br>sans les kilomètres.</h1>
+  <p>Livraison partout au Maroc. Vous payez à la réception.</p>
+</section>
+
+<div id="adminBar" class="admin-bar" hidden>
+  <span>Mode gestion activé</span>
+  <button id="addBtn" type="button">Ajouter un produit</button>
+  <button id="resetBtn" class="ghost" type="button">Remettre les produits d'origine</button>
+  <button id="exitAdmin" class="ghost" type="button">Quitter</button>
+</div>
+
+<nav id="filters" class="filters" aria-label="Catégories"></nav>
+<main id="grid" class="grid"></main>
+
+<footer>© <span id="year"></span> SOU9I.ma · Commandes confirmées par WhatsApp</footer>
+
+<!-- Panier -->
+<div id="overlay" class="overlay" hidden></div>
+<aside id="cart" class="cart" aria-label="Panier" aria-hidden="true">
+  <div class="cart-head"><h2>Votre panier</h2><button id="closeCart" class="ghost" type="button" aria-label="Fermer">✕</button></div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-foot">
+    <div class="total"><span>Total</span><b id="cartTotal">0 MAD</b></div>
+    <form id="checkout">
+      <input name="name" placeholder="Nom complet" required autocomplete="name">
+      <input name="phone" placeholder="Téléphone (06…)" required inputmode="tel" pattern="[0-9+ ]{9,15}" autocomplete="tel">
+      <input name="city" placeholder="Ville" required autocomplete="address-level2">
+      <textarea name="address" placeholder="Adresse de livraison" rows="2" required></textarea>
+      <button type="submit">Commander sur WhatsApp</button>
+    </form>
+  </div>
+</aside>
+
+<!-- Ajouter un produit -->
+<dialog id="addDialog">
+  <form id="addForm" method="dialog">
+    <h2>Nouveau produit</h2>
+    <label>Nom <input name="name" required maxlength="60"></label>
+    <label>Prix (MAD) <input name="price" type="number" min="1" step="1" required></label>
+    <label>Catégorie <input name="category" list="cats" placeholder="ex. Maison" required maxlength="25"></label>
+    <datalist id="cats"></datalist>
+    <label>Description <textarea name="desc" rows="2" maxlength="140"></textarea></label>
+    <label>Photo <input name="image" type="file" accept="image/*"></label>
+    <div class="row">
+      <button type="button" id="cancelAdd" class="ghost">Annuler</button>
+      <button type="submit">Ajouter</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
